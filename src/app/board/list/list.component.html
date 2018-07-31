@@ -1,0 +1,34 @@
+<div class="todo dark-grey-text" style="background:lightgreen">
+  <div class="todo-title editable-p">
+    <h3 class="todo-title-text editable">{{ list.title }}</h3>
+    <div class="edit hidden-icon" style="display:inline-block;visibility:hidden">
+      <i class="material-icons md-24 v-align">mode_edit</i>
+    </div>
+  </div>
+  <ul class="todo-group">
+    <app-todo *ngFor="let todo of list.todos" [todo]="todo" [listId]="list.id"></app-todo>
+  </ul>
+
+  <!-- List Actions -->
+
+  <div class="todo-add">
+    <input type="text" 
+    (keydown.enter)="newTodo($event)"
+    placeholder="Add Todo..." 
+    class="todo-add-input">
+  </div>
+  <div class="todo-actions" style="visibility:hidden">
+    <div class="remind-me">
+      <i class="material-icons v-align">textsms</i>
+    </div>
+    <div class="photo-bg">
+      <i class="material-icons v-align">insert_photo</i>
+    </div>
+    <div class="remove">
+      <i class="material-icons v-align">delete</i>
+    </div>
+    <div class="select">
+      <i class="material-icons v-align select-icon">check</i>
+    </div>
+  </div>
+</div>
