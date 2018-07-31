@@ -18,13 +18,31 @@ export class ListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // Subscribe to remove todo event and remove todo
+    this.todosService.removeTodoFromTodos.subscribe(todoId => this.onRemoveTodo(todoId));
   }
 
   // Add new todo to database and corresponding list
   newTodo(e) {
     // Post new todo to database
-    this.todosService.addTodo(this.list.id, e.target.value);
-    // TODO Fetch todo and add to list array
+    this.todosService.addTodo(this.list.id, e.target.value)
+    // Fetch todo and add to list array
+    .subscribe(res => this.list.todos.push(new Todo(
+      res.todo._id,
+      res.todo.value,
+      res.todo.isDone
+    )))
+    // Set text input to empty
+    e.target.value = '';
+  }
+
+  onRemoveTodo(todoId) {
+    // Loop through all todos and check for corresponding ID
+    this.list.todos.forEach((todo, i) => {
+      if(todo.id === todoId)
+        // Remove todo from list todos array
+        this.list.todos.splice(i, 1);
+    });
   }
 
 }

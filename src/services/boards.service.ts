@@ -9,7 +9,7 @@ const httpOptions = {
 @Injectable()
 export class BoardsService {
 
-  private apiUrl: string = 'http://localhost:3000';
+  private apiUrl: string = 'https://guarded-reaches-36717.herokuapp.com';
   boards: any = {};
 
   constructor(private http: HttpClient) {}

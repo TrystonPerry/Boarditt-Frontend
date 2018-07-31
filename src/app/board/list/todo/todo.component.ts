@@ -33,7 +33,6 @@ export class TodoComponent implements OnInit {
 
   updateTodo() {
     this.todosService.updateTodo(this.listId, this.todo);
-    console.log('Working');
   }
 
   deleteTodo(e) {
