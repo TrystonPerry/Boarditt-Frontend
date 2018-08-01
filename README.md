@@ -1,4 +1,12 @@
-# BoardittFrontend
+# BoardittFrontend (Boarditt)
+
+Advanced Todo List app that takes advantage of Angular, Typescript, and Services to create a complete REST SPA application. Organize all your todos in lists. Where you can also create boards featuring multiple lists. Tidy up your tasks and always have something productive to do.
+
+Check out the backend Node.js API: [Boarditt-Backend](https://github.com/TrystonPerry/Boarditt-Backend)
+
+## Demo
+
+View the live demo for this app at: [Boarditt Demo](https://guarded-reaches-36717.herokuapp.com/boards)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
