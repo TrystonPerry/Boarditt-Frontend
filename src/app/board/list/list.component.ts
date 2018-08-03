@@ -45,4 +45,10 @@ export class ListComponent implements OnInit {
     });
   }
 
+  textAreaAdjust(o) {
+    o = o.target;
+    o.style.height = "1px";
+    o.style.height = (o.scrollHeight-3)+"px"
+  }
+
 }

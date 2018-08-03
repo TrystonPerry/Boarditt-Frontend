@@ -39,5 +39,11 @@ export class TodoComponent implements OnInit {
     this.todosService.deleteTodo(this.todo.id);
   }
 
+  textAreaAdjust(o) {
+    o = o.target;
+    o.style.height = "1px";
+    o.style.height = (o.scrollHeight-3)+"px"
+  }
+
 
 }

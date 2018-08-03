@@ -12,10 +12,12 @@
   <!-- List Actions -->
 
   <div class="todo-add">
-    <input type="text" 
+    <textarea
     (keydown.enter)="newTodo($event)"
     placeholder="Add Todo..." 
-    class="todo-add-input">
+    class="todo-add-input"
+    (keydown)="textAreaAdjust($event)"
+    style="overflow: hidden;"></textarea>
   </div>
   <div class="todo-actions" style="visibility:hidden">
     <div class="remind-me">

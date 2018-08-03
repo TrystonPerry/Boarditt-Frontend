@@ -67,17 +67,21 @@ body {
 .todo-group {
   margin: 0;
   padding: 0;
+  padding-top: 10px;
 }
 
 .todo-item {
   list-style: none;
   padding: 0;
-  margin: 10px;
+  margin-bottom: 10px;
   margin-left: 0px;
 }
 
 .todo-item-text {
   display: inline-block;
+  width: 250px;
+  padding-left: 40px;
+  overflow-wrap: break-word;
 }
 
 .todo-actions {
@@ -94,9 +98,14 @@ body {
   transition-duration: .2s;
 }
 
+.todo-left-options {
+  position: absolute;
+}
+
 .drag {
   transition-duration: .2s;
   cursor: move;
+  display: inline-block;
 }
 
 .drag:hover {
@@ -155,7 +164,7 @@ input {
 }
 
 .todo-item-content, .edit {
-  display: inline-block;
+  display: inline;
   transition-duration: 200ms;
 }
 
@@ -188,6 +197,30 @@ input {
 
 .todo-add-input {
   padding-left: 25px;
+  background-color:rgba(0, 0, 0, 0);
+  color: rgb(68, 62, 62);
+  border: none;
+  outline:none;
+  font-family: 'Roboto', 'sans-seriff';
+  font-size: 16px;
+  width: 250px;
+  height: 20px;
+}
+
+.todo-edit-input {
+  padding-left: 40px;
+  background-color:rgba(0, 0, 0, 0);
+  color: rgb(68, 62, 62);
+  border: none;
+  outline:none;
+  font-family: 'Roboto', 'sans-seriff';
+  font-size: 16px;
+  width: 250px;
+  height: 20px;
+}
+
+textarea {
+  resize: none;
 }
 
 .todo-add {

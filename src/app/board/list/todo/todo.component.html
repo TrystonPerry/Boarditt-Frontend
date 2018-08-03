@@ -1,26 +1,25 @@
 <li class="todo-item editable-p"
 (mouseenter)="isEditIconVisible = true"
 (mouseleave)="isEditIconVisible = false">
-  <div class="drag" style="display:inline-block">
-    <i class="material-icons md-18 v-align">drag_handle</i>
-  </div>
-  <div class="todo-item-content">
-      <input type="checkbox" 
+  <div class="todo-left-options">
+    <i class="material-icons drag md-18 v-align">drag_handle</i>
+    <input type="checkbox" 
       (click)="toggleTodoDone()"
       [disabled]="isEditMode"
       [checked]="todo.isDone" 
       class="todo-item-checkbox">
-      <div *ngIf="!isEditMode" 
+  </div>
+  <div *ngIf="!isEditMode" 
       (click)="toggleTodoDone()"
       [ngStyle]="{ 'text-decoration': todo.isDone ? 'line-through' : 'none' }"
       class="todo-item-text editable">
       {{ todo.value }}</div>
-      <input *ngIf="isEditMode" 
+      <textarea *ngIf="isEditMode" 
       (keydown.enter)="updateTodoValue($event)"
+      (keydown)="textAreaAdjust($event)"
       type="text" 
-      class="todo-item-text editable" 
-      [value]="todo.value">
-  </div>
+      class="todo-item-text todo-edit-input editable" 
+      [value]="todo.value"></textarea>
   <div class="edit hidden-icon" 
   *ngIf="!todo.isDone"
   (click)="isEditMode = !isEditMode"
