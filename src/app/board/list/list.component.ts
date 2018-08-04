@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { List } from '../../../models/List';
 import { Todo } from '../../../models/Todo';
 import { TodosService } from '../../../services/todos.service';
+import { ListsService } from '../../../services/lists.service';
 
 @Component({
   selector: 'app-list',
@@ -13,7 +14,14 @@ export class ListComponent implements OnInit {
   // list data
   @Input() list: List;
 
+  isEditMode: boolean = false;
+  isFocus: boolean = false;
+  isHeaderFocus: boolean = false;
+  isPaletteMenuVisible: boolean = false;
+
+
   constructor(
+    private listsService: ListsService,
     private todosService: TodosService
   ) { }
 
@@ -22,8 +30,27 @@ export class ListComponent implements OnInit {
     this.todosService.removeTodoFromTodos.subscribe(todoId => this.onRemoveTodo(todoId));
   }
 
+  updateListTitle(e) {
+    this.toggleIsEditMode();
+    this.list.title = e.target.value;
+    this.updateList();
+  }
+
+  updateList() {
+    this.listsService.updateList(this.list);
+  }
+
+  removeList() {
+    this.listsService.deleteList(this.list.id);
+  }
+
   // Add new todo to database and corresponding list
   newTodo(e) {
+    e.preventDefault();
+    if(e.target.value === '') {
+      alert('Cant add empty todo!'); // TODO make better alert system
+      return;
+    }
     // Post new todo to database
     this.todosService.addTodo(this.list.id, e.target.value)
     // Fetch todo and add to list array
@@ -45,10 +72,29 @@ export class ListComponent implements OnInit {
     });
   }
 
-  textAreaAdjust(o) {
-    o = o.target;
-    o.style.height = "1px";
-    o.style.height = (o.scrollHeight-3)+"px"
+  toggleIsEditMode() {
+    this.isEditMode = !this.isEditMode;
+  }
+
+  toggleIsFocus() {
+    this.isFocus = !this.isFocus;
+    if(this.isPaletteMenuVisible)
+      this.togglePaletteMenu();
+  }
+
+  toggleIsHeaderFocus() {
+    this.isHeaderFocus = !this.isHeaderFocus;
+  }
+
+  togglePaletteMenu() {
+    this.isPaletteMenuVisible = !this.isPaletteMenuVisible;
+  }
+
+  changeColor(color: string) {
+    this.list.color = color;
+    this.updateList();
+    this.togglePaletteMenu();
+    this.toggleIsFocus();
   }
 
 }

@@ -2,4 +2,5 @@
 <div class="nav-offset"></div>
 <div class="container">
   <app-board *ngFor="let board of boards" [board]="board"></app-board>
+  <h2 *ngIf="!isLoaded" style="margin-top: 50px; font-size: 40px">Loading...</h2>
 </div>

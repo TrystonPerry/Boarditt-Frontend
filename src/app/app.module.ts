@@ -9,6 +9,8 @@ import { BoardComponent } from './board/board.component';
 import { ListComponent } from './board/list/list.component';
 import { TodoComponent } from './board/list/todo/todo.component';
 import { TodosService } from '../services/todos.service';
+import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
+import { ListsService } from '../services/lists.service';
 
 @NgModule({
   declarations: [
@@ -20,10 +22,12 @@ import { TodosService } from '../services/todos.service';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    TextareaAutosizeModule
   ],
   providers: [
     BoardsService,
+    ListsService,
     TodosService
   ],
   bootstrap: [

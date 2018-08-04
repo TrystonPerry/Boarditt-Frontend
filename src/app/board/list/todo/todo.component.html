@@ -16,13 +16,13 @@
       {{ todo.value }}</div>
       <textarea *ngIf="isEditMode" 
       (keydown.enter)="updateTodoValue($event)"
-      (keydown)="textAreaAdjust($event)"
+      autosize
       type="text" 
       class="todo-item-text todo-edit-input editable" 
       [value]="todo.value"></textarea>
   <div class="edit hidden-icon" 
   *ngIf="!todo.isDone"
-  (click)="isEditMode = !isEditMode"
+  (click)="toggleEditMode()"
   [ngStyle]="{ 'visibility': isEditIconVisible ? 'visible' : 'hidden' }">
     <i class="material-icons md-18 v-align">mode_edit</i>
   </div>

@@ -21,6 +21,10 @@ export class TodoComponent implements OnInit {
   ngOnInit() {
   }
 
+  toggleEditMode() {
+    this.isEditMode = !this.isEditMode;
+  }
+
   toggleTodoDone() {
     this.todo.isDone = !this.todo.isDone;
     this.updateTodo();
@@ -32,17 +36,11 @@ export class TodoComponent implements OnInit {
   }
 
   updateTodo() {
-    this.todosService.updateTodo(this.listId, this.todo);
+    this.todosService.updateTodo(this.todo);
   }
 
   deleteTodo(e) {
     this.todosService.deleteTodo(this.todo.id);
-  }
-
-  textAreaAdjust(o) {
-    o = o.target;
-    o.style.height = "1px";
-    o.style.height = (o.scrollHeight-3)+"px"
   }
 
 

@@ -24,11 +24,11 @@ export class TodosService {
         value,
         isDone: false
       }
-    }, httpOptions)
+    }, httpOptions);
   }
 
   // Update todo in database
-  updateTodo(listId: string, todo: Todo) {
+  updateTodo(todo: Todo) {
     this.http.put(this.apiUrl + '/todos/' + todo.id, {
       todo
     }).subscribe(

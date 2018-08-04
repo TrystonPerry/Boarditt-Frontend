@@ -12,11 +12,14 @@ import { Todo } from '../models/Todo';
 export class AppComponent implements OnInit {
   
   boards: Board[] = [];
+  isLoaded: boolean = false;
 
   constructor(private boardsService: BoardsService) {}
 
   ngOnInit() {
     this.getBoards();
+    this.boardsService.addBoardToBoards.subscribe(boardTitle => this.onAddBoard(boardTitle));
+    this.boardsService.removeBoardFromBoards.subscribe(boardId => this.onRemoveBoard(boardId));
   }
 
   // Get all boards from BoardsService
@@ -35,6 +38,7 @@ export class AppComponent implements OnInit {
        },
       err => console.log(err)
     )
+    this.isLoaded = true;
   }
 
   // Get all lists for corresponding board
@@ -46,10 +50,27 @@ export class AppComponent implements OnInit {
         list._id,
         // Populate all todos with data and add them to list
         (this.getTodos(list)),
-        list.title
+        list.title,
+        list.color
       ))
     })
     return lists;
+  }
+
+  onAddBoard(board: any) {
+    this.boards.push(new Board(
+      board._id,
+      [],
+      board.title
+    ))
+  }
+
+  onRemoveBoard(boardId: string) {
+    this.boards.forEach((board, i) => {
+      if(board.id === boardId){
+        this.boards.splice(i, 1);
+      }
+    })
   }
 
   // Get all todos for corresponding list

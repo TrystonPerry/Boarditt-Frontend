@@ -1,15 +1,37 @@
 <div class="board default-cursor">
-  <div class="board-text editable-p">
-    <i class="material-icons md-48 v-align">person</i><h4 class="icon-text board-title editable">{{ board.title }}</h4>
-    <div class="hidden-icon inline-block right" style="visibility:hidden">
-      <div class="edit">
-        <i class="material-icons md-36 v-align">mode_edit</i>
-      </div>
+  <div class="board-text editable-p" 
+  (mouseenter)="toggleIsHeaderFocus()"
+  (mouseleave)="toggleIsHeaderFocus()">
+    <i class="material-icons md-48 v-align">person</i>
+    <h3 *ngIf="!isEditMode" (click)="toggleIsCollapsed()" style="cursor:pointer" class="todo-title-text editable">{{ board.title }}</h3>
+    <input 
+    *ngIf="isEditMode" 
+    type="text" 
+    class="todo-title-text-edit editable" 
+    (keydown.enter)="updateBoardTitle($event)"
+    [value]="board.title">
+    <div class="hidden-icon inline-block right" *ngIf="isHeaderFocus">
       <div class="add-todo inline-block">
-        <i class="material-icons md-48 v-align">add</i>
+        <i class="material-icons md-48 v-align"
+        (click)="newList($event)">add</i>
+      </div>
+      <div class="edit">
+        <i class="material-icons md-48 v-align"
+        (click)="toggleIsEditMode()">mode_edit</i>
+      </div>
+      <div class="add-todo delete-todo inline-block">
+        <i class="material-icons md-48 v-align"
+        (click)="removeBoard()">delete</i>
       </div>
     </div>   
   </div>
-  <hr>
-  <app-list *ngFor="let list of board.lists" [list]="list"></app-list>
+  <div [ngStyle]="{'display': !isCollapsed ? 'block' : 'none'}">
+    <hr>
+    <div class="lists" *ngIf="board.lists.length > 0">
+      <app-list *ngFor="let list of board.lists" [list]="list"></app-list>
+    </div>
+    <div class="no-lists" *ngIf="board.lists.length === 0">
+      <h5 class="center" style="text-align: center; margin: 25px; font-size: 25px;">No lists created :/</h5>
+    </div>
+  </div> 
 </div>
