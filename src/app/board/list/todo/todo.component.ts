@@ -23,6 +23,7 @@ export class TodoComponent implements OnInit {
 
   toggleEditMode() {
     this.isEditMode = !this.isEditMode;
+    // this.todoInput.nativeElement.focus();
   }
 
   toggleTodoDone() {
@@ -31,6 +32,8 @@ export class TodoComponent implements OnInit {
   }
 
   updateTodoValue(e) {
+    e.preventDefault();
+    this.toggleEditMode();
     this.todo.value = e.target.value;
     this.updateTodo();
   }

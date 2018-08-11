@@ -12,7 +12,7 @@ body {
   margin: 0;
   box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.5);
   position: fixed;
-  z-index: 99;
+  z-index: 97;
 }
 
 .nav-brand {
@@ -42,7 +42,7 @@ body {
   width: 317px;
   display: inline-grid;
   transition-duration: .2s;
-}
+} 
 
 .todo:hover {
   box-shadow: 0px 2px 20px 1px rgba(0, 0, 0, 0.5);
@@ -275,11 +275,15 @@ textarea {
   transform: scale(1.2);
 }
 
-.color-type-red { background-color: #ea3e2e; }
-.color-type-blue { background-color: #3a83d1; }
-.color-type-green { background-color: #38d15e; }
-.color-type-orange { background-color: #d6b017; }
-.color-type-yellow { background-color: #d1e51d; }
+.pointer {
+  cursor: pointer;
+}
+
+.color-type-red { background-color: #ff8c8c; }
+.color-type-blue { background-color: #8edbff; }
+.color-type-green { background-color: #73f76a; }
+.color-type-orange { background-color: #f1c658; }
+.color-type-yellow { background-color: #e8f259; }
 .color-type-white { background-color: white; }
 
 .modal {
@@ -352,6 +356,15 @@ textarea {
 
 .right {
   float: right;
+}
+
+.unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .material-icons.md-18 { font-size: 18px; padding: 0px; }

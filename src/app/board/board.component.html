@@ -21,17 +21,30 @@
       </div>
       <div class="add-todo delete-todo inline-block">
         <i class="material-icons md-48 v-align"
-        (click)="removeBoard()">delete</i>
+        (click)="showDeleteBoard()">delete</i>
       </div>
     </div>   
   </div>
   <div [ngStyle]="{'display': !isCollapsed ? 'block' : 'none'}">
     <hr>
-    <div class="lists" *ngIf="board.lists.length > 0">
-      <app-list *ngFor="let list of board.lists" [list]="list"></app-list>
+    <div #lists class="lists" *ngIf="board.lists.length > 0">
+      <app-list class="" *ngFor="let list of board.lists" [list]="list"></app-list>
     </div>
     <div class="no-lists" *ngIf="board.lists.length === 0">
       <h5 class="center" style="text-align: center; margin: 25px; font-size: 25px;">No lists created :/</h5>
     </div>
   </div> 
+</div>
+<div *ngIf="isDeleteAlertVisible" class="delete-confirm">
+  <span class="icon-text v-align" style="padding: 20px;">
+    Are you sure you want to delete the <strong>{{ board.title }}</strong> board?
+  </span>
+  <div class="delete-confirm-answers">
+    <div (click)="removeBoard()" class="yes">
+      <p>Yes</p>
+    </div>
+    <div (click)="hideDeleteBoard()" class="no">
+      <p>No</p>
+    </div>
+  </div>
 </div>

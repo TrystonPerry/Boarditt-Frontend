@@ -1,21 +1,27 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Board } from '../models/Board';
+import { UserAuthService } from './user-auth.service';
 
-const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'})
+let httpOptions = {
+  headers: null
 }
 
 @Injectable()
 export class BoardsService {
 
-  private apiUrl: string = 'https://guarded-reaches-36717.herokuapp.com';
+  private apiUrl: string = 'https://guarded-reaches-36717.herokuapp.com/api';
   boards: Board[] = [];
 
   addBoardToBoards: EventEmitter<Board> = new EventEmitter();
   removeBoardFromBoards: EventEmitter<string> = new EventEmitter();
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private userAuthService: UserAuthService
+  ) {
+    this.userAuthService.updateToken.subscribe(token => this.onTokenUpdate(token));
+  }
 
   getBoards() {
     return this.http.get(this.apiUrl + '/boards', httpOptions);
@@ -37,14 +43,14 @@ export class BoardsService {
       board: {
         title: board.title
       }
-    }).subscribe(
+    }, httpOptions).subscribe(
       res => {},
       err => console.log(err)
     )
   }
 
   deleteBoard(boardId: string) {
-    this.http.delete(this.apiUrl + '/boards/' + boardId)
+    this.http.delete(this.apiUrl + '/boards/' + boardId, httpOptions)
     .subscribe(
       res => this.removeBoardFromBoards.emit(boardId),
       err => console.log(err)
@@ -54,6 +60,13 @@ export class BoardsService {
         this.boards.splice(i, 1);
       }
     });
+  }
+
+  onTokenUpdate(token: string) {
+    httpOptions.headers = new HttpHeaders({
+      'Content-type': 'application/json',
+      'Authorization': token
+    })
   }
 
 }

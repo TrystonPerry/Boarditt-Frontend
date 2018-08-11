@@ -3,6 +3,7 @@ import { Board } from '../../models/Board';
 import { ListsService } from '../../services/lists.service';
 import { List } from '../../models/List';
 import { BoardsService } from '../../services/boards.service';
+import { BackgroundService } from '../../services/background.service';
 
 @Component({
   selector: 'app-board',
@@ -17,10 +18,12 @@ export class BoardComponent implements OnInit {
   isEditMode: boolean = false;
   isCollapsed: boolean = false;
   isHeaderFocus: boolean = false;
+  isDeleteAlertVisible: boolean = false;
 
   constructor(
     private boardsService: BoardsService,
-    private listsService: ListsService
+    private listsService: ListsService,
+    private backgroundService: BackgroundService
   ) { }
 
   ngOnInit() {
@@ -35,6 +38,8 @@ export class BoardComponent implements OnInit {
 
   removeBoard() {
     this.boardsService.deleteBoard(this.board.id);
+    this.isDeleteAlertVisible = false;
+    this.backgroundService.setBackgroundVisible(false);
   }
 
   newList(e) {
@@ -66,6 +71,16 @@ export class BoardComponent implements OnInit {
 
   toggleIsHeaderFocus() {
     this.isHeaderFocus = !this.isHeaderFocus;
+  }
+
+  hideDeleteBoard() {
+    this.isDeleteAlertVisible = false;
+    this.backgroundService.setBackgroundVisible(false);
+  }
+
+  showDeleteBoard() {
+    this.isDeleteAlertVisible = true;
+    this.backgroundService.setBackgroundVisible(true);
   }
 
 }

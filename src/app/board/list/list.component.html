@@ -46,18 +46,31 @@
     </div> -->
     <div class="remove">
       <i class="todo-action material-icons v-align"
-      (click)="removeList()">delete</i>
+      (click)="showDeleteAlert()">delete</i>
     </div>
-    <div class="select">
+    <!-- <div class="select">
       <i class="todo-action material-icons v-align select-icon">check</i>
-    </div>
+    </div> -->
   </div>
   <div class="todo-actions" *ngIf="isPaletteMenuVisible" style="height: 25px;">
-    <div class="color-type color-type-red" (click)="changeColor('#ea3e2e')"></div>
-    <div class="color-type color-type-blue" (click)="changeColor('#3a83d1')"></div>
-    <div class="color-type color-type-green" (click)="changeColor('#38d15e')"></div>
-    <div class="color-type color-type-orange" (click)="changeColor('#d6b017')"></div>
-    <div class="color-type color-type-yellow" (click)="changeColor('#d1e51d')"></div>
+    <div class="color-type color-type-red" (click)="changeColor('#ff8c8c')"></div>
+    <div class="color-type color-type-blue" (click)="changeColor('#8edbff')"></div>
+    <div class="color-type color-type-green" (click)="changeColor('#73f76a')"></div>
+    <div class="color-type color-type-orange" (click)="changeColor('#f1c658')"></div>
+    <div class="color-type color-type-yellow" (click)="changeColor('#e8f259')"></div>
     <div class="color-type color-type-white" (click)="changeColor('white')"></div>
+  </div>
+</div>
+<div *ngIf="isDeleteAlertVisible" class="delete-confirm">
+  <span class="icon-text v-align" style="padding: 20px;">
+    Are you sure you want to delete the <strong>{{ list.title }}</strong> list?
+  </span>
+  <div class="delete-confirm-answers">
+    <div (click)="removeList()" class="yes">
+      <p>Yes</p>
+    </div>
+    <div (click)="hideDeleteAlert()" class="no">
+      <p>No</p>
+    </div>
   </div>
 </div>

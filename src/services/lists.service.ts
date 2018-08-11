@@ -1,19 +1,25 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { List } from '../models/List';
+import { UserAuthService } from './user-auth.service';
 
-const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'})
+let httpOptions = {
+  headers: null
 }
 
 @Injectable()
 export class ListsService {
 
-  private apiUrl: string = 'https://guarded-reaches-36717.herokuapp.com';
+  private apiUrl: string = 'https://guarded-reaches-36717.herokuapp.com/api';
 
   removeListFromLists: EventEmitter<string> = new EventEmitter();
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private userAuthService: UserAuthService
+  ) {
+    this.userAuthService.updateToken.subscribe(token => this.onTokenUpdate(token));
+  }
 
   addList(boardId: string) : any {
     return this.http.post(this.apiUrl + '/lists', {
@@ -31,16 +37,23 @@ export class ListsService {
         color: list.color,
         title: list.title
       }
-    }).subscribe(
+    }, httpOptions).subscribe(
       res => {},
       err => console.log(err)
     );
   }
 
   deleteList(listId: string) {
-    this.http.delete(this.apiUrl + '/lists/' + listId).subscribe(
+    this.http.delete(this.apiUrl + '/lists/' + listId, httpOptions).subscribe(
       res => this.removeListFromLists.emit(listId), 
       err => console.log(err)
     );
+  }
+
+  onTokenUpdate(token: string) {
+    httpOptions.headers = new HttpHeaders({
+      'Content-type': 'application/json',
+      'Authorization': token
+    })
   }
 }

@@ -1,20 +1,26 @@
 import { Injectable, EventEmitter } from "../../node_modules/@angular/core";
 import { Todo } from '../models/Todo';
 import { HttpClient, HttpHeaders } from "../../node_modules/@angular/common/http";
+import { UserAuthService } from "./user-auth.service";
 
-const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'})
+let httpOptions = {
+  headers: null
 }
 
 @Injectable()
 export class TodosService {
 
-  private apiUrl: string = 'https://guarded-reaches-36717.herokuapp.com';
+  private apiUrl: string = 'https://guarded-reaches-36717.herokuapp.com/api';
 
   // Event that triggers when deleting todo, list component parent is subscribed
   removeTodoFromTodos: EventEmitter<String> = new EventEmitter();
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private userAuthService: UserAuthService
+  ) {
+    this.userAuthService.updateToken.subscribe(token => this.onTokenUpdate(token));
+  }
 
   // Add todo to database
   addTodo(listId: string, value: string) : any {
@@ -31,7 +37,7 @@ export class TodosService {
   updateTodo(todo: Todo) {
     this.http.put(this.apiUrl + '/todos/' + todo.id, {
       todo
-    }).subscribe(
+    }, httpOptions).subscribe(
       res => {},
       err => console.log(err)
     );
@@ -39,13 +45,18 @@ export class TodosService {
 
   // Delete todo from database
   deleteTodo(todoId: string) {
-    this.http.delete(this.apiUrl + '/todos/' + todoId)
+    this.http.delete(this.apiUrl + '/todos/' + todoId, httpOptions)
     .subscribe(
       res => this.removeTodoFromTodos.emit(todoId),
       err => console.log(err)
     )
   }
 
-
+  onTokenUpdate(token: string) {
+    httpOptions.headers = new HttpHeaders({
+      'Content-type': 'application/json',
+      'Authorization': token
+    })
+  }
 
 }

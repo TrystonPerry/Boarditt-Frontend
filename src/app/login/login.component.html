@@ -1,0 +1,46 @@
+<div class="center">
+  <div class="login-form"> 
+    Login
+    <br>
+    <br>
+    <input #email id="email" type="email" placeholder="Email">
+    <br>
+    <br>
+    Password
+    <br>
+    <br>
+    <input #password id="password" type="password" placeholder="Password">
+    <br>
+    <br>
+    <br>
+    <button (click)="login(email.value, password.value)">Login</button>
+  </div>
+</div>
+
+
+<style>
+  .center {
+    margin: auto;
+    max-width: 500px;
+  }
+  .login-form {
+    max-width: 500px;
+    background: #326AE4;
+    padding: 40px;
+    color: white;
+    border-radius: 10px;
+  }
+  input {
+    background: white;
+    height: 40px;
+    font-size: 20px;
+    width: 100%;
+  }
+  button { 
+    border: none;
+    background: white;
+    color: black;
+    padding: 10px 40px;
+    cursor: pointer;
+  }
+</style>

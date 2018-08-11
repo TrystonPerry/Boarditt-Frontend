@@ -3,6 +3,7 @@ import { List } from '../../../models/List';
 import { Todo } from '../../../models/Todo';
 import { TodosService } from '../../../services/todos.service';
 import { ListsService } from '../../../services/lists.service';
+import { BackgroundService } from '../../../services/background.service';
 
 @Component({
   selector: 'app-list',
@@ -16,13 +17,15 @@ export class ListComponent implements OnInit {
 
   isEditMode: boolean = false;
   isFocus: boolean = false;
+  isDeleteAlertVisible: boolean = false;
   isHeaderFocus: boolean = false;
   isPaletteMenuVisible: boolean = false;
 
 
   constructor(
     private listsService: ListsService,
-    private todosService: TodosService
+    private todosService: TodosService,
+    private backgroundService: BackgroundService
   ) { }
 
   ngOnInit() {
@@ -42,6 +45,7 @@ export class ListComponent implements OnInit {
 
   removeList() {
     this.listsService.deleteList(this.list.id);
+    this.backgroundService.setBackgroundVisible(false);
   }
 
   // Add new todo to database and corresponding list
@@ -61,6 +65,7 @@ export class ListComponent implements OnInit {
     )))
     // Set text input to empty
     e.target.value = '';
+    e.target.style.height = '23px';
   }
 
   onRemoveTodo(todoId) {
@@ -95,6 +100,16 @@ export class ListComponent implements OnInit {
     this.updateList();
     this.togglePaletteMenu();
     this.toggleIsFocus();
+  }
+
+  hideDeleteAlert() {
+    this.isDeleteAlertVisible = false;
+    this.backgroundService.setBackgroundVisible(false);
+  }
+
+  showDeleteAlert() {
+    this.isDeleteAlertVisible = true;
+    this.backgroundService.setBackgroundVisible(true);
   }
 
 }
