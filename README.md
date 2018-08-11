@@ -4,7 +4,7 @@ Advanced Todo List app that takes advantage of Angular, Typescript, and Services
 
 ## Demo
 
-View the live demo for this app at: [Boarditt Demo](https://guarded-reaches-36717.herokuapp.com/boards)
+View the live demo for this app at: [Boarditt Demo](https://boarditt.com)
 
 Check out the backend Node.js API: [Boarditt-Backend](https://github.com/TrystonPerry/Boarditt-Backend)
 
