@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, Routes, Router } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { BoardsService } from '../services/boards.service';
@@ -17,6 +18,9 @@ import { UserAuthService } from '../services/user-auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { SignupComponent } from './signup/signup.component';
 import { BackgroundService } from '../services/background.service';
+import { LandingComponent } from './landing/landing.component';
+import { HomeComponent } from './home/home.component';
+import { HeaderNoAccountComponent } from './header-no-account/header-no-account.component';
 
 @NgModule({
   declarations: [
@@ -26,11 +30,20 @@ import { BackgroundService } from '../services/background.service';
     ListComponent,
     TodoComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    LandingComponent,
+    HomeComponent,
+    HeaderNoAccountComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    RouterModule.forRoot([
+      { path: '', component: LandingComponent },
+      { path: 'home', component: HomeComponent },
+      { path: 'login', component: LoginComponent },
+      { path: 'signup', component: SignupComponent }
+    ]),
     TextareaAutosizeModule
   ],
   providers: [
@@ -46,4 +59,5 @@ import { BackgroundService } from '../services/background.service';
     AppComponent
   ]
 })
+
 export class AppModule { }

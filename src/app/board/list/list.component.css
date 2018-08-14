@@ -1,3 +1,88 @@
+.list {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+  width: 317px;
+  display: inline-grid;
+  transition-duration: .2s;
+} 
+
+.list:hover {
+  box-shadow: 0px 2px 20px 1px rgba(0, 0, 0, 0.5);
+  transform: scale(1.02);
+  z-index: 0;
+}
+
+.list-title {
+  padding: 4px;
+  border-bottom: 2px solid rgb(68, 62, 62);
+}
+
+.list-title-text {
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.list-title-text-edit {
+  font-size: 1.17em;
+  height: 27px;
+  text-decoration: underline;
+  width: 250px;
+}
+
+.todo-group {
+  margin: 0;
+  padding: 0;
+  padding-top: 10px;
+}
+
+.list-actions {
+  margin-top: 10px;
+}
+
+.list-actions div {
+  display: inline-block;
+  margin-right: 15px;
+  transition-duration: 200ms;
+}
+
+.list-actions div:hover {
+  color: white;
+}
+
+.edit {
+  float: right;
+  transition-duration: .2s;
+}
+
+.todo-add-input {
+  padding-left: 25px;
+  background-color:rgba(0, 0, 0, 0);
+  color: rgb(68, 62, 62);
+  border: none;
+  outline:none;
+  font-family: 'Roboto', 'sans-seriff';
+  font-size: 16px;
+  width: 250px;
+  height: 20px;
+}
+
+.color-type {
+  background-color: white;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  border: 1px solid black;
+}
+
+.color-type-red { background-color: #ff8c8c; }
+.color-type-blue { background-color: #8edbff; }
+.color-type-green { background-color: #73f76a; }
+.color-type-orange { background-color: #f1c658; }
+.color-type-yellow { background-color: #e8f259; }
+.color-type-white { background-color: white; }
+
 .delete-confirm {
   background: white;
   width: 250px;
@@ -41,7 +126,7 @@
   height: 50px;
   width: 125px;
   position: relative;
-  top: -66px;
+  top: -50px;
   left: 125px;
   cursor: pointer;
   border-bottom-right-radius: 10px;

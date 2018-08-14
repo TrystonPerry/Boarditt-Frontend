@@ -1,17 +1,18 @@
-<div class="todo dark-grey-text"
+<div class="list dark-grey-text"
 [ngStyle]="{'background-color': list.color}"
 (mouseenter)="toggleIsFocus()"
 (mouseleave)="toggleIsFocus()"
 >
-  <div class="todo-title editable-p"
+  <div class="list-title editable-p"
   (mouseenter)="toggleIsHeaderFocus()"
   (mouseleave)="toggleIsHeaderFocus()"
   >
-    <h3 *ngIf="!isEditMode" class="todo-title-text editable">{{ list.title }}</h3>
+    <h3 *ngIf="!isEditMode" class="list-title-text editable">{{ list.title }}</h3>
     <input 
     *ngIf="isEditMode" 
     type="text" 
-    class="todo-title-text-edit editable" 
+    class="list-title-text-edit editable"
+    maxlength="25"
     (keydown.enter)="updateListTitle($event)"
     [value]="list.title">
     <div class="edit hidden-icon" *ngIf="isHeaderFocus">
@@ -32,9 +33,9 @@
     class="todo-add-input"
     style="overflow: hidden;"></textarea>
   </div>
-  <div class="todo-actions"
+  <div class="list-actions"
   [ngStyle]="{'visibility': isFocus ? 'visible' : 'hidden'}">
-    <div class="color">
+    <div class="color pointer">
       <i class="todo-action material-icons v-align"
       (click)="togglePaletteMenu()">palette</i>
     </div>
@@ -44,7 +45,7 @@
     <div class="photo-bg">
       <i class="material-icons v-align">insert_photo</i>
     </div> -->
-    <div class="remove">
+    <div class="remove pointer">
       <i class="todo-action material-icons v-align"
       (click)="showDeleteAlert()">delete</i>
     </div>
@@ -52,7 +53,7 @@
       <i class="todo-action material-icons v-align select-icon">check</i>
     </div> -->
   </div>
-  <div class="todo-actions" *ngIf="isPaletteMenuVisible" style="height: 25px;">
+  <div class="list-actions" *ngIf="isPaletteMenuVisible" style="height: 25px;">
     <div class="color-type color-type-red" (click)="changeColor('#ff8c8c')"></div>
     <div class="color-type color-type-blue" (click)="changeColor('#8edbff')"></div>
     <div class="color-type color-type-green" (click)="changeColor('#73f76a')"></div>
@@ -62,9 +63,9 @@
   </div>
 </div>
 <div *ngIf="isDeleteAlertVisible" class="delete-confirm">
-  <span class="icon-text v-align" style="padding: 20px;">
+  <p class="icon-text v-align" style="padding: 20px;">
     Are you sure you want to delete the <strong>{{ list.title }}</strong> list?
-  </span>
+  </p>
   <div class="delete-confirm-answers">
     <div (click)="removeList()" class="yes">
       <p>Yes</p>

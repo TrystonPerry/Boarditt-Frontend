@@ -16,6 +16,7 @@
       {{ todo.value }}</div>
       <textarea *ngIf="isEditMode"
       (keydown.enter)="updateTodoValue($event)"
+      (keydown.escape)="toggleEditMode()"
       autosize
       type="text" 
       class="todo-item-text todo-edit-input editable" 

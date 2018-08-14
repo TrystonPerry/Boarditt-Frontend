@@ -1,0 +1,32 @@
+<nav class="nav default-cursor">
+  <section class="section-header">
+    <div class="container">
+      <div class="nav-list">
+        <a routerLink="/" id="brand" class="pointer">Boarditt</a>
+        <div style="float:right">
+          <a routerLink="/api" class="nav-list-item pointer">Developers</a>
+          <a routerLink="/login" class="nav-list-item pointer">Login</a>
+          <a routerLink="/signup" class="nav-list-item pointer">Signup</a>
+          <i class="material-icons v-align pointer" (click)="toggleIsMenuVisible()" id="menu">menu</i>
+        </div> 
+      </div>
+    </div>
+  </section>
+  <div 
+  *ngIf="isMenuVisible" 
+  class="menu-list">
+    <ul class="nav-ul" style="padding-left:0">
+      <li class="menu-list-item pointer" routerLink="/signup" title="Signup" aria-label="Signup">
+        <i class="material-icons v-align">person_add</i>
+        <span class="icon-text v-align" style="padding-left: 5px;">Signup</span>
+      </li>
+      <li class="menu-list-item pointer" routerLink="/login" title="Login" aria-label="Login">
+        <i class="material-icons v-align">person</i>
+        <span class="icon-text v-align" style="padding-left: 5px;">Login</span>
+      </li>
+      <li class="menu-list-item pointer" routerLink="/api" title="Developers" aria-label="Developers">
+        <i class="material-icons v-align">code</i>
+        <span class="icon-text v-align" style="padding-left: 5px;">Developers</span>
+      </li>
+    </ul>
+  </div>

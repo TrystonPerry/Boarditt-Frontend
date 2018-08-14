@@ -1,0 +1,49 @@
+.todo-item {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 10px;
+  margin-left: 0px;
+}
+
+.todo-item-text {
+  display: inline-block;
+  width: 250px;
+  padding-left: 40px;
+  overflow-wrap: break-word;
+  line-height: 1rem;
+}
+
+.edit {
+  float: right;
+  transition-duration: .2s;
+}
+
+.edit:hover {
+  color: white;
+}
+
+.todo-left-options {
+  position: absolute;
+}
+
+.todo-edit-input {
+  padding-left: 40px;
+  background-color:rgba(0, 0, 0, 0);
+  color: rgb(68, 62, 62);
+  border: none;
+  outline:none;
+  font-family: 'Roboto', 'sans-seriff';
+  font-size: 16px;
+  width: 250px;
+  text-decoration: underline;
+}
+
+.drag {
+  transition-duration: .2s;
+  cursor: move;
+  display: inline-block;
+}
+
+.drag:hover {
+  color: white;
+}

@@ -1,52 +1,66 @@
-<br>
-<div class="center">
-  <div class="login-form"> 
-    Signup
-    <br>
-    <br>
-    <input #email id="email" type="email" placeholder="Email">
-    <br>
-    <br>
-    Password
-    <br>
-    <br>
-    <input #password id="password" type="password" placeholder="Password">
-    <br>
-    <br>
-    Re-enter Password
-    <br>
-    <br>
-    <input #password2 id="password2" type="password" placeholder="Password">
-    <br>
-    <br>
-    <br>
-    <button (click)="signup(email.value, password.value, password2.value)">Signup</button>
+<app-header-no-account></app-header-no-account>
+<div class="body">
+  <div class="container">
+    <div style="margin: 70px"></div>
+    <div id="step1" class="signup-form">
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <h1 id="register">Sign Up</h1>
+          <div id="register-text">Sign Up for the simplest todo manager.</div>
+          <div id="caption-text">
+            <p>
+              No time to waste! Let's get your account setup so you can start
+              organizing your tasks. Just fill out the form, and you'll be well
+              on your way!
+            </p>
+            <p>
+              <i>
+                *We'll never share your email with anyone else or store your password in plain text
+              </i>
+            </p>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6" id="signup-from-form">
+          <p style="margin-top:0px;">Email</p>
+          <input #email id="email" type="email" placeholder="Email">
+          <p>Password</p>
+          <input #password id="password" type="password" placeholder="Password">
+          <p>Re-enter Password</p>
+          <input #password2 id="password2" type="password" placeholder="Password">
+          <button (click)="signup(email.value, password.value, password2.value)">Next</button>
+        </div>
+      </div>
+    </div>
+    <!-- <br>
+    <div class="signup-form">
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <h1 id="register">Sign Up</h1>
+          <div id="register-text">Sign Up for the simplest todo manager.</div>
+          <div id="caption-text">
+            <p>
+              No time to waste! Let's get your account setup so you can start
+              organizing your tasks. Just fill out the form, and you'll be well
+              on your way!
+            </p>
+            <p>
+              <i>
+                *We'll never share your email with anyone else or store your password in plain text
+              </i>
+            </p>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6" id="signup-from-form">
+          <p style="margin-top:0px;">Email</p>
+          <input #email id="email" type="email" placeholder="Email">
+          <p>Password</p>
+          <input #password id="password" type="password" placeholder="Password">
+          <p>Re-enter Password</p>
+          <input #password2 id="password2" type="password" placeholder="Password">
+          <button (click)="signup(email.value, password.value, password2.value)">Next</button>
+        </div>
+      </div>
+    </div> -->
   </div>
+
 </div>
-  
-<style>
-  .center {
-    margin: auto;
-    max-width: 500px;
-  }
-  .login-form {
-    max-width: 500px;
-    background: #326AE4;
-    padding: 40px;
-    color: white;
-    border-radius: 10px;
-  }
-  input {
-    background: white;
-    height: 40px;
-    font-size: 20px;
-    width: 100%;
-  }
-  button { 
-    border: none;
-    background: white;
-    color: black;
-    padding: 10px 40px;
-    cursor: pointer;
-  }
-</style>

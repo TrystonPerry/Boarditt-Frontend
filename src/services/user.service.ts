@@ -26,7 +26,7 @@ export class UserService {
   }
 
   signup(email: string, password) {
-    this.http.post(this.apiUrl + '/signup', {
+    return this.http.post(this.apiUrl + '/signup', {
       email,
       password
     }, httpOptions).subscribe((data: any) => {

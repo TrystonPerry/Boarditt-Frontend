@@ -25,7 +25,11 @@ export class HeaderComponent implements OnInit {
 
   newBoard() {
     this.boardsService.addBoard();
+  }
+
+  newBoardMenu() {
     this.toggleIsMenuVisible();
+    this.boardsService.addBoard();
   }
 
   logout() {

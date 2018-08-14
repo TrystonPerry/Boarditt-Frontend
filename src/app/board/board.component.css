@@ -1,3 +1,22 @@
+.board {
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.lists {
+  margin: auto;
+  max-width: 1400px;
+}
+
+.board-title-text {
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.edit:hover {
+  color: white;
+}
+
 .delete-confirm {
   background: white;
   width: 250px;
@@ -37,11 +56,31 @@
   text-align: center;
 }
 
+.add-list {
+  transition-duration: .2s;
+}
+
+.add-list:hover {
+  color: white;
+}
+
+.todo-item-content, .edit {
+  display: inline;
+  transition-duration: 200ms;
+}
+
+.board-title-text-edit {
+  font-size: 1.17em;
+  height: 27px;
+  text-decoration: underline;
+  width: 350px;
+}
+
 .no {
   height: 50px;
   width: 125px;
   position: relative;
-  top: -66px;
+  top: -50px;
   left: 125px;
   cursor: pointer;
   border-bottom-right-radius: 10px;
@@ -53,9 +92,4 @@
   top: 50%;
   transform: translateY(-50%);
   text-align: center;
-}
-
-.lists {
-  margin: auto;
-  max-width: 1400px;
 }
