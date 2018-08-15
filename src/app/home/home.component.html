@@ -1,15 +1,9 @@
 <app-header></app-header>
 <div class="nav-offset"></div>
 <div class="container">
-  <div *ngIf="isCheckedLogin">
-    <app-login *ngIf="!isLoggedIn"></app-login>
-    <app-signup *ngIf="!isLoggedIn"></app-signup>
-    <div *ngIf="isLoggedIn">
-      <app-board *ngFor="let board of boards" [board]="board"></app-board>
-      <h2 *ngIf="boards.length === 0">You have no boards :/</h2>
-      <h2 *ngIf="!isLoaded" class="loader"></h2>
-    </div>
-  </div>
+  <app-board *ngFor="let board of boards" [board]="board"></app-board>
+  <h2 *ngIf="boards.length === 0 && isLoaded">You have no boards :/</h2>
+  <h2 *ngIf="!isLoaded" class="loader"></h2>
 </div>
 <div *ngIf="isBackgroundVisible" 
 #backgroundBlock 

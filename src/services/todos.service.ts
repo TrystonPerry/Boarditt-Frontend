@@ -19,9 +19,9 @@ export class TodosService {
     private http: HttpClient,
     private userAuthService: UserAuthService
   ) {
-    this.userAuthService.updateToken.subscribe(token => this.onTokenUpdate(token));
-    if(this.userAuthService.token !== '') {
-      this.onTokenUpdate(this.userAuthService.token);
+    this.userAuthService.onUpdateToken.subscribe(token => this.onTokenUpdate(token));
+    if(this.userAuthService.getToken() !== '') {
+      this.onTokenUpdate(this.userAuthService.getToken());
     }
   }
 

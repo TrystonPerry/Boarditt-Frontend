@@ -10,7 +10,8 @@ export class UserService {
   
   private apiUrl: string = 'https://guarded-reaches-36717.herokuapp.com/user';
 
-  updateToken: EventEmitter<string> = new EventEmitter();
+  onSignUp: EventEmitter<string> = new EventEmitter();
+  onLogIn: EventEmitter<string> = new EventEmitter();
 
   constructor(
     private http: HttpClient
@@ -21,16 +22,16 @@ export class UserService {
       email,
       password
     }, httpOptions).subscribe((data : any) => {
-      this.updateToken.emit(data.token);
+      this.onLogIn.emit(data.token);
     })
   }
 
   signup(email: string, password) {
-    return this.http.post(this.apiUrl + '/signup', {
+    this.http.post(this.apiUrl + '/signup', {
       email,
       password
     }, httpOptions).subscribe((data: any) => {
-      this.updateToken.emit(data.token);
+      this.onSignUp.emit(data.token);
     })
   }
 }

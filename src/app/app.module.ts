@@ -16,7 +16,8 @@ import { LoginComponent } from './login/login.component';
 import { UserService } from '../services/user.service';
 import { UserAuthService } from '../services/user-auth.service';
 import { CookieService } from 'ngx-cookie-service';
-import { SignupComponent } from './signup/signup.component';
+import { SignupPageComponent } from './signup-page/signup-page.component';
+import { SignupComponent } from './signup-page/signup/signup.component';
 import { BackgroundService } from '../services/background.service';
 import { LandingComponent } from './landing/landing.component';
 import { HomeComponent } from './home/home.component';
@@ -35,16 +36,16 @@ import { CheckLoginComponent } from './check-login/check-login.component';
     LandingComponent,
     HomeComponent,
     HeaderNoAccountComponent,
-    CheckLoginComponent
+    CheckLoginComponent,
+    SignupPageComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot([
       { path: '', component: CheckLoginComponent },
-      { path: 'home', component: CheckLoginComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'signup', component: SignupComponent }
+      { path: 'signup', component: SignupPageComponent }
     ]),
     TextareaAutosizeModule
   ],

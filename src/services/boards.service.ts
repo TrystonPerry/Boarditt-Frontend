@@ -20,7 +20,10 @@ export class BoardsService {
     private http: HttpClient,
     private userAuthService: UserAuthService
   ) {
-    this.userAuthService.updateToken.subscribe(token => this.onTokenUpdate(token));
+    this.userAuthService.onUpdateToken.subscribe(token => this.onTokenUpdate(token));
+    if(this.userAuthService.getToken() !== ''){
+      this.onTokenUpdate(this.userAuthService.getToken());
+    }
   }
 
   getBoards() {

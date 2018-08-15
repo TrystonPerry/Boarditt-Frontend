@@ -34,6 +34,10 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.userAuthService.deleteToken();
+  }
+
+  logoutMenu() {
+    this.userAuthService.deleteToken();
     this.toggleIsMenuVisible();
   }
 

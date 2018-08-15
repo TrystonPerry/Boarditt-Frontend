@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { UserAuthService } from '../../services/user-auth.service';
 import { CookieService } from '../../../node_modules/ngx-cookie-service';
 import { EventEmitter } from '@angular/core';
+import { BoardsService } from '../../services/boards.service';
 
 @Component({
   selector: 'app-check-login',
@@ -13,45 +14,46 @@ export class CheckLoginComponent implements OnInit {
   isLoggedIn: boolean = false;
   isCheckedLogin: boolean = false;
 
-  getBoards: EventEmitter<boolean> = new EventEmitter();
-
   constructor(
     private userAuthService: UserAuthService,
-    private cookieService: CookieService,
+    private cookieService: CookieService
   ) {}
 
   ngOnInit() {
     this.verifyLogin();
+    this.userAuthService.onSetLoggedIn
+    .subscribe(isLoggedIn => this.isLoggedIn = isLoggedIn);
   }
 
   verifyLogin() {
     // Check if token is not empty (logged in)
     if(this.cookieService.get('token') !== '') {
       // Verify the token is correct
-      this.userAuthService.isTokenVerified(this.cookieService.get('token')).subscribe((data : any) => {
-        if(data.err){
-          this.isCheckedLogin = true;
-          this.userAuthService.updateToken.subscribe((token) => {
-            this.isLoggedIn = true;
-            // Emit event to get boards
-            this.getBoards.emit(true);
-          })
-        } else {
-          this.isLoggedIn = true;
-          this.isCheckedLogin = true;
-          this.getBoards.emit(true);
-        }
-      })
-    // Token found in cookies (not logged in)
+      if(this.userAuthService.isTokenVerified(this.cookieService.get('token'))) {
+        this.isCheckedLogin = true;
+        this.userAuthService.onUpdateToken.subscribe(() => {
+          this.setLoggedIn();
+        })
+      } else {
+        this.isCheckedLogin = true;
+        this.setLoggedIn();
+      }
+    // No token found in cookies (not logged in)
     } else {
-      console.log('Test');
       this.isCheckedLogin = true;
       this.isLoggedIn = false;
-      this.userAuthService.updateToken.subscribe((token) => {
-        this.isLoggedIn = true;
-        this.getBoards.emit(true);
-      })
+      // this.userAuthService.onUpdateToken.subscribe(() => {
+      //   this.setLoggedIn();
+      // })
     }
   }
 
+  setLoggedIn() {
+    this.isLoggedIn = true;
+    setTimeout(() => {
+      this.userAuthService.setIsLoggedIn(true);
+    }, 1)
+  }
+
 }
+

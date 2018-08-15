@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../services/user.service';
-import { UserAuthService } from '../../services/user-auth.service';
-import { BoardsService } from '../../services/boards.service';
-import { Board } from '../../models/Board';
+import { UserService } from '../../../services/user.service';
+import { UserAuthService } from '../../../services/user-auth.service';
+import { BoardsService } from '../../../services/boards.service';
+import { Board } from '../../../models/Board';
 
 @Component({
   selector: 'app-signup',
@@ -24,13 +24,13 @@ export class SignupComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.userAuthService.updateToken.subscribe(token => this.setToken(token));
+    this.userService.onSignUp.subscribe(token => this.setToken(token));
     this.boardsService.addBoardToBoards.subscribe(board => this.setBoard(board));
   }
 
   signup(email: string, password: string, password2: string) {
     if(password === password2){
-      this.userService.login(email, password); // TODO change back to signup method
+      this.userService.signup(email, password); // TODO change back to signup method
     } else {
       alert('Passwords dont match!');
     }
@@ -51,7 +51,6 @@ export class SignupComponent implements OnInit {
       [],
       board.title
     )
-    console.log(board);
   }
 
   moveElementOut() {
