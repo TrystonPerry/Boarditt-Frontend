@@ -21,6 +21,7 @@ import { BackgroundService } from '../services/background.service';
 import { LandingComponent } from './landing/landing.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderNoAccountComponent } from './header-no-account/header-no-account.component';
+import { CheckLoginComponent } from './check-login/check-login.component';
 
 @NgModule({
   declarations: [
@@ -33,14 +34,15 @@ import { HeaderNoAccountComponent } from './header-no-account/header-no-account.
     SignupComponent,
     LandingComponent,
     HomeComponent,
-    HeaderNoAccountComponent
+    HeaderNoAccountComponent,
+    CheckLoginComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot([
-      { path: '', component: LandingComponent },
-      { path: 'home', component: HomeComponent },
+      { path: '', component: CheckLoginComponent },
+      { path: 'home', component: CheckLoginComponent },
       { path: 'login', component: LoginComponent },
       { path: 'signup', component: SignupComponent }
     ]),

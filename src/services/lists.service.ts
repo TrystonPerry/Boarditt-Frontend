@@ -19,9 +19,13 @@ export class ListsService {
     private userAuthService: UserAuthService
   ) {
     this.userAuthService.updateToken.subscribe(token => this.onTokenUpdate(token));
+    if(this.userAuthService.token !== ''){
+      this.onTokenUpdate(this.userAuthService.token);
+    }
   }
 
   addList(boardId: string) : any {
+    console.log(httpOptions);
     return this.http.post(this.apiUrl + '/lists', {
       boardId,
       list: {

@@ -1,4 +1,5 @@
-<div class="center">
+<app-header-no-account></app-header-no-account>
+<div class="center" style="margin-top: 70px">
   <div class="login-form"> 
     Login
     <br>
@@ -13,7 +14,7 @@
     <br>
     <br>
     <br>
-    <button (click)="login(email.value, password.value)">Login</button>
+    <button (click)="login(email.value, password.value)" routerLink="/home">Login</button>
   </div>
 </div>
 

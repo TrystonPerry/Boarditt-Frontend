@@ -20,6 +20,9 @@ export class TodosService {
     private userAuthService: UserAuthService
   ) {
     this.userAuthService.updateToken.subscribe(token => this.onTokenUpdate(token));
+    if(this.userAuthService.token !== '') {
+      this.onTokenUpdate(this.userAuthService.token);
+    }
   }
 
   // Add todo to database

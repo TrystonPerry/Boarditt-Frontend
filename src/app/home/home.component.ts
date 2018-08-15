@@ -17,8 +17,6 @@ import { BackgroundService } from '../../services/background.service';
 export class HomeComponent implements OnInit {
   
   boards: Board[] = [];
-  isCheckedLogin: boolean = false;
-  isLoggedIn: boolean = false;
   isLoaded: boolean = false;
   isBackgroundVisible: boolean = false;
   isHeaderBackgroundVisible: boolean = false;
@@ -33,55 +31,28 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-  this.backgroundService.onChangeBackgroundVisibility
-  .subscribe(isBackgroundVisible => this.isBackgroundVisible = isBackgroundVisible);
-  this.backgroundService.onChangeHeaderBackgroundVisibile
-  .subscribe(isHeaderBackgroundVisible => this.isHeaderBackgroundVisible = isHeaderBackgroundVisible);
-    if(this.cookieService.get('token') !== ''){
-      this.userAuthService.isTokenVerified(this.cookieService.get('token')).subscribe((data : any) => {
-        if(data.err){
-          this.isCheckedLogin = true;
-          this.userAuthService.updateToken.subscribe((token) => {
-            this.isLoggedIn = true;
-            this.cookieService.set('token', token);
-            this.getBoards();
-            this.boardsService.addBoardToBoards.subscribe(boardTitle => this.onAddBoard(boardTitle));
-            this.boardsService.removeBoardFromBoards.subscribe(boardId => this.onRemoveBoard(boardId));;
-          })
-        } else {
-          this.isLoggedIn = true;
-          this.isCheckedLogin = true;
-          this.userAuthService.setToken(this.cookieService.get('token'));
-          this.getBoards();
-          this.boardsService.addBoardToBoards.subscribe(boardTitle => this.onAddBoard(boardTitle));
-          this.boardsService.removeBoardFromBoards.subscribe(boardId => this.onRemoveBoard(boardId));
-        }
-      })
-    } else {
-      this.isCheckedLogin = true;
-      this.userAuthService.updateToken.subscribe((token) => {
-        this.isLoggedIn = true;
-        this.cookieService.set('token', token);
-        this.getBoards();
-        this.boardsService.addBoardToBoards.subscribe(boardTitle => this.onAddBoard(boardTitle));
-        this.boardsService.removeBoardFromBoards.subscribe(boardId => this.onRemoveBoard(boardId));;
-      })
-    }
-    this.userAuthService.onDeleteToken.subscribe(() => {
-      this.cookieService.delete('token');
-      location.reload();
-      this.boards = [];
-      this.isLoaded = false;
-      this.isLoggedIn = false;
-      this.isCheckedLogin = true;
-      this.userAuthService.updateToken.subscribe((token) => {
-        this.isLoggedIn = true;
-        this.cookieService.set('token', token);
-        this.getBoards();
-        this.boardsService.addBoardToBoards.subscribe(boardTitle => this.onAddBoard(boardTitle));
-        this.boardsService.removeBoardFromBoards.subscribe(boardId => this.onRemoveBoard(boardId));;
-      })
-    })
+    this.backgroundService.onChangeBackgroundVisibility
+    .subscribe(isBackgroundVisible => this.isBackgroundVisible = isBackgroundVisible);
+    this.backgroundService.onChangeHeaderBackgroundVisibile
+    .subscribe(isHeaderBackgroundVisible => this.isHeaderBackgroundVisible = isHeaderBackgroundVisible);
+    // this.userAuthService.onDeleteToken.subscribe(() => {
+    //   this.cookieService.delete('token');
+    //   location.reload();
+    //   this.boards = [];
+    //   this.isLoaded = false;
+    //   this.isLoggedIn = false;
+    //   this.isCheckedLogin = true;
+    //   this.userAuthService.updateToken.subscribe((token) => {
+    //     this.isLoggedIn = true;
+    //     this.cookieService.set('token', token);
+    //     this.getBoards();
+    //     this.boardsService.addBoardToBoards.subscribe(boardTitle => this.onAddBoard(boardTitle));
+    //     this.boardsService.removeBoardFromBoards.subscribe(boardId => this.onRemoveBoard(boardId));;
+    //   })
+    // })
+    this.getBoards();
+    this.boardsService.addBoardToBoards.subscribe(boardTitle => this.onAddBoard(boardTitle));
+    this.boardsService.removeBoardFromBoards.subscribe(boardId => this.onRemoveBoard(boardId));;
   }
 
   // Get all boards from BoardsService
