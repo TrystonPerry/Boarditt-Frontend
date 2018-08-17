@@ -30,7 +30,7 @@ export class SignupComponent implements OnInit {
 
   signup(email: string, password: string, password2: string) {
     if(password === password2){
-      this.userService.signup(email, password); // TODO change back to signup method
+      this.userService.signup(email, password);
     } else {
       alert('Passwords dont match!');
     }

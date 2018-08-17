@@ -1,0 +1,76 @@
+.board {
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.lists {
+  margin: auto;
+  max-width: 1400px;
+}
+
+.board-title-text {
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.edit:hover {
+  color: white;
+}
+
+.add-list {
+  transition-duration: .2s;
+}
+
+.add-list:hover {
+  color: white;
+}
+
+.todo-item-content, .edit {
+  display: inline;
+  transition-duration: 200ms;
+}
+
+.board-title-text-edit {
+  font-size: 1.17em;
+  height: 27px;
+  text-decoration: underline;
+  width: 350px;
+}
+
+.tip {
+  width: 300px;
+  background: rgb(235, 235, 235);
+  border-radius: 10px;
+  position: absolute;
+}
+
+.tip-text {
+  padding: 20px;
+  margin: 0px !important;
+}
+
+.tip-pointer {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 0;
+	height: 0;
+	border: 20px solid transparent;
+	border-top-color: rgb(235, 235, 235);
+	border-bottom: 0;
+	border-left: 0;
+	margin-left: -10px;
+  margin-bottom: -20px;
+}
+
+.tip-pointer-right {
+	left: 90% !important;
+}
+
+#tip-new-board {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}

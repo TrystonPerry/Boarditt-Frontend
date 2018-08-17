@@ -42,9 +42,6 @@ export class CheckLoginComponent implements OnInit {
     } else {
       this.isCheckedLogin = true;
       this.isLoggedIn = false;
-      // this.userAuthService.onUpdateToken.subscribe(() => {
-      //   this.setLoggedIn();
-      // })
     }
   }
 

@@ -23,6 +23,7 @@ import { LandingComponent } from './landing/landing.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderNoAccountComponent } from './header-no-account/header-no-account.component';
 import { CheckLoginComponent } from './check-login/check-login.component';
+import { BoardGuideComponent } from './signup-page/signup/board-guide/board-guide.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { CheckLoginComponent } from './check-login/check-login.component';
     HomeComponent,
     HeaderNoAccountComponent,
     CheckLoginComponent,
-    SignupPageComponent
+    SignupPageComponent,
+    BoardGuideComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,42 @@
+<div class="board default-cursor">
+  <div class="board-text editable-p" 
+  (mouseenter)="toggleIsHeaderFocus()"
+  (mouseleave)="toggleIsHeaderFocus()">
+    <i class="material-icons md-48 v-align">person</i>
+    <h3 *ngIf="!isEditMode" (click)="toggleIsCollapsed()" style="cursor:pointer" class="board-title-text editable">{{ board.title }}</h3>
+    <input 
+    *ngIf="isEditMode" 
+    type="text" 
+    class="board-title-text-edit editable" 
+    maxlength="32"
+    (keydown.enter)="updateBoardTitle($event)"
+    [value]="board.title">
+    <div class="hidden-icon inline-block right" *ngIf="isHeaderFocus">
+      <div class="add-list inline-block">
+        <i class="material-icons md-48 v-align"
+        (click)="newList($event)">add</i>
+      </div>
+      <div class="edit">
+        <i class="material-icons md-48 v-align" id="edit-icon"
+        (click)="toggleIsEditMode()">mode_edit</i>
+      </div>
+    </div>   
+  </div>
+  <div [ngStyle]="{'display': !isCollapsed ? 'block' : 'none'}">
+    <hr>
+    <div #lists class="lists" *ngIf="board.lists.length > 0">
+      <app-list class="" *ngFor="let list of board.lists" [list]="list"></app-list>
+    </div>
+    <div class="no-lists" *ngIf="board.lists.length === 0">
+      <h5 class="center" style="text-align: center; margin: 25px; font-size: 25px;">No lists created :/</h5>
+    </div>
+  </div> 
+</div>
+<!-- <div *ngIf="step === 1" class="tip" style="top: 20px">
+  <p class="tip-text">After creating a new board, hover over the header of it to see edit icons</p>
+  <div class="tip-pointer"></div>
+</div>
+<div *ngIf="step === 2" class="tip" style="top: 7px">
+  <p class="tip-text">Click the pencil icon to edit the Boards name</p>
+  <div class="tip-pointer tip-pointer-right"></div>
+</div> -->

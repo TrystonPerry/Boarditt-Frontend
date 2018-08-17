@@ -31,6 +31,7 @@ export class UserService {
       email,
       password
     }, httpOptions).subscribe((data: any) => {
+      if(data.err) return alert(data.err);
       this.onSignUp.emit(data.token);
     })
   }
