@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(email: string, password: string, stayLoggedIn: boolean) {
-    this.userService.login(email, password);
+    this.userService.login(email, password, stayLoggedIn);
   }
 
 }

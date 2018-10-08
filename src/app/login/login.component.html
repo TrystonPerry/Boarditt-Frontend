@@ -10,9 +10,9 @@
         <p>Password</p>
         <input #password id="password" type="password" placeholder="Password">
         <div style="margin-top: 25px">
-          <input disabled #stayLoggedIn type="checkbox" class="v-align" style="height: 17px; width: 17px;">
+          <input #stayLoggedIn type="checkbox" class="v-align" style="height: 17px; width: 17px;">
           <p style="display:inline; cursor: default" 
-          title="Stay logged in if using a private computer (not currently implemented)">
+          title="Stay logged in if using a private computer">
            Stay Logged In</p>
         </div>
         <button (click)="login(email.value, password.value, stayLoggedIn.checked)">Next</button>
