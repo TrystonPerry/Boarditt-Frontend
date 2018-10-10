@@ -1,8 +1,6 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { UserAuthService } from '../../services/user-auth.service';
 import { CookieService } from '../../../node_modules/ngx-cookie-service';
-import { EventEmitter } from '@angular/core';
-import { BoardsService } from '../../services/boards.service';
 
 @Component({
   selector: 'app-check-login',
